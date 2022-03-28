@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- CSS -->
+    <link rel='stylesheet' href="{{ url_for('static', filename='styles.css')}}">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Błękitna Pigułka Murti-Binga</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+          <div></div>
+          <ul>
+            <li data-dedata="0px" class="active"><a href="{{ url_for('xd') }}">xD</a></li>
+            <li data-dedata="160px"><a href="{{ url_for('projects') }}">Projekty</a></li>
+            <li data-dedata="320px"><a href="{{ url_for('contact') }}">Kontakt</a></li>
+            <li data-dedata="480px"><a href="{{ url_for('info') }}">Info</a></li>
+          </ul>
+        </nav>
+      </div>
+    <div class='container-main'>
+    {% block body_block %}
+    {% endblock %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+</body>
+</html>

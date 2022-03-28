@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h1>Ciekawe postacie</h1>
+{% for name, description, num_letters, num_words in characters %}
+<h3>{{ name }}</h3>
+<p>{{ description }}</p>
+<p>Ilość liter: {{ num_letters }}, ilość słów: {{ num_words }}.</p>
+{% endfor %}
+{% endblock %}

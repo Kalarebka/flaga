@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Examples</title>
+
+</head>
+<body>
+    <h1>HTMX</h1>
+
+    <h2>Czym jest HTMX?</h2>
+
+<p>HTMX to biblioteka dająca dostęp do funkcji JavaScript (AJAX, WebSockets, walidacja formularzy, animacje itp.) z poziomu tagów HTML.</p>
+
+<p>Jest to stosunkowo nowy wynalazek, nie ma za dużo źródeł w języku polskim, ale zainteresowanych zachęcam do przestudiowania oficjalnej strony po angielsku, jest moim zdaniem bardo czytelna: <a href="https://htmx.org/">HTMX</a></p>
+
+<h2>Po co?</h2>
+
+<p>Tworzenie dynamicznych stron internetowych, gdzie interakcja z serwerem zachodzi w sposób asynchroniczny*, wymaga znajomości JavaScript. Jaki JS jest, każdy widzi xD</p>
+
+<p>* asynchroniczny - brzmi bardzo groźnie, a chodzi o to, że zmiana zawartości strony i interakcja z serwerem może zachodzić na bieżąco, fragmentami, bez przeładowywania całej strony.</p>
+
+<p>Dla Prawdziwego Frontendowca przy tworzeniu dużych skomplikowanych stron najczęstszym wyborem są frameworki JS. Jest to jednak duży dodatkowy poziom złożoności. Podstawową funkcjonalność można osiągnąć właśnie m. in. za pomocą HTMX.</p>
+
+<p>HTMX bardzo dobrze współpracuje z frameworkami Pythona (Flask, Django), gdyż defaultowo oczekuje odpowiedzi w HTML, czyli to co te frameworki robią najlepiej.</p>
+
+Jak działa?
+
+<p>Zaimportowanie HTMX do naszego HTMLa to jedna linijka:</p>
+<code>&ltscript src="https://unpkg.com/htmx.org@1.7.0">&lt/script></code>
+
+
+
+
+<h1>Przykłady (work in progress, sama się tego dopiero uczę)</h1>
+
+    <h2>Wywołanie api z dowcipami:</h2>
+    <p> Na początek przykład z zewnętrznym URL. </p>
+    <h3>HTML:</h3>
+
+    <script src="https://gist.github.com/Kalarebka/13e5747ff20cf17c97f3bf8363685692.js"></script>
+
+    <p>Naciśniecie przycisku powoduje:</p>
+    <ul>
+        <li>wysłanie żądania GET pod wskazany URL</li>
+        <li>wstawienie uzyskanego tekstu do elementu o id "joke" (czyli poniższego elementu &ltp>)</li>
+    </ul>
+
+    <button hx-get="https://v2.jokeapi.dev/joke/Programming?type=single&format=txt"
+            hx-target="#joke">GET a joke</button>
+
+    <p id="joke"></p>
+
+    <h2>Teraz z wykorzystaniem route we Flasku</h2>
+
+    <p>Podczas pisania w polu tekstowym formularza, po każdej literze funkcja sprawdza, czy aktualna zawartość jest już w liście zapisanej na serwerze.</p>
+    <h3>HTML:</h3>
+    <script src="https://gist.github.com/Kalarebka/8ecc5f5d7260d806029b580fc69d6be1.js"></script>
+    <h3>app.py:</h3>
+    <script src="https://gist.github.com/Kalarebka/a3e22e3805082a1f5ee08731332d1f54.js"></script>
+    <br>
+    <form action="{{ url_for('fruits') }}" method="POST">
+      <p id="fruit-label"></p>
+      <input type="text"
+             name="new_fruit"
+             placeholder="Enter a fruit to add"
+             maxlength="20"
+             hx-post="{{ url_for('check_fruit') }}"
+             hx-trigger="keyup"
+             hx-target="#fruit-label"
+             hx-swap="outerHTML">
+      <button type="submit" value="Submit">Submit</button>
+    </form>
+    <p>Działanie:</p>
+    <ul>
+      <li>Po wpisaniu litery (hx-trigger - keyup) wysyłamy POST request do funkcji 'check_fruit' w app.py (hx-post)</li>
+      <li>funkcja zwraca nam html, który zastępuje element &ltp> o id "fruit-label" (hx-target)</li>
+      <li>zastępujemy cały element (hx-swap - outerHTML), żeby równocześnie zmienić kolor tekstu za pomocą taga style</li>
+    </ul>
+    
+    
+
+    <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
+</body>
+</html>

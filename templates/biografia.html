@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<meta name="Karol" content="width=device-width, initial-scale=1">
+<style>
+/* img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    } */
+
+body {
+  background: -moz-linear-gradient(top, rgba(17, 48, 224, 0.3) 50%, rgba(255, 238, 0, 0.3) 50%), url("{{ url_for('static', filename='wheat.png') }}");
+  background: -webkit-linear-gradient(top, rgba(17, 48, 224, 0.3) 50%, rgba(255, 238, 0, 0.3) 50%), url("{{ url_for('static', filename='wheat.png') }}");
+  background: -o-linear-gradient(top, rgba(17, 48, 224, 0.3) 50%, rgba(255, 238, 0, 0.3) 50%), url("{{ url_for('static', filename='wheat.png') }}");
+  background: -ms-linear-gradient(top, rgba(17, 48, 224, 0.3) 50%, rgba(255, 238, 0, 0.3) 50%), url("{{ url_for('static', filename='wheat.png') }}");
+  background: linear-gradient(to bottom, rgba(17, 48, 224, 0.3) 50%, rgba(255, 238, 0, 0.3) 50%), url("{{ url_for('static', filename='wheat.png') }}");
+  background-attachment: fixed;
+  color: #e0cfcf;
+    }
+</style>
+</head>
+
+<body>
+    <h1 style="text-align:center">{{ludz}}</h1>
+    <div style="display: flex; flex-direction: row; justify-content:center;">
+    <img src='{{ url_portretu }}'' alt='{{ ludz }}' style="width:30%;">
+    <div style="background:rgba(4, 15, 78); width: 40%; font-size: 20px; padding: 30px; "><p style="text-align: center; text-align: justify;">{{ opis }}</p></div>
+    </div>
+</body>
+
+</html>
