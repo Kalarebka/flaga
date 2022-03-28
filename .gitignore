@@ -1,5 +1,6 @@
 flagaenv/
 pliki_serwerowe/
 pomocnicze_skrypty/
+__pycache__/
 flaga.sock
 settings.ini
